@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>in.srain.apps</groupId>
+    <artifactId>fresco-demo-for-maven</artifactId>
+    <packaging>apk</packaging>
+    <name>fresco-demo-for-maven</name>
+    <version>1.0.1-SNAPSHOT</version>
+
+    <dependencies>
+        <dependency>
+            <groupId>android</groupId>
+            <artifactId>android</artifactId>
+            <version>5.0.1_r2</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- use this version, exclude all the other version from the other libraries. -->
+        <dependency>
+            <groupId>com.android.support</groupId>
+            <artifactId>support-v4</artifactId>
+            <version>21.0.3</version>
+            <type>aar</type>
+        </dependency>
+
+        <!-- begin of fresco -->
+        <dependency>
+            <groupId>com.facebook.fresco</groupId>
+            <artifactId>fresco</artifactId>
+            <version>0.4.0</version>
+            <type>aar</type>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.android.support</groupId>
+                    <artifactId>support-v4</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.facebook.fresco</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>com.facebook.fresco</groupId>
+            <artifactId>fbcore</artifactId>
+            <type>aar</type>
+            <version>0.4.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.facebook.fresco</groupId>
+            <artifactId>drawee</artifactId>
+            <type>aar</type>
+            <version>0.4.0</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.android.support</groupId>
+                    <artifactId>support-v4</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.facebook.fresco</groupId>
+                    <artifactId>fbcore</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>com.facebook.fresco</groupId>
+            <artifactId>imagepipeline</artifactId>
+            <type>aar</type>
+            <version>0.4.0</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.android.support</groupId>
+                    <artifactId>support-v4</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.facebook.fresco</groupId>
+                    <artifactId>fbcore</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+    </dependencies>
+
+    <properties>
+        <android_maven_plugin_version>3.8.2</android_maven_plugin_version>
+        <android_compile_api_level>21</android_compile_api_level>
+    </properties>
+
+    <build>
+        <finalName>${project.artifactId}</finalName>
+        <sourceDirectory>src/</sourceDirectory>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                    <excludes>
+                        <exclude>target/generated-sources/r/*</exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+            <!-- compile plugin -->
+            <plugin>
+                <groupId>com.jayway.maven.plugins.android.generation2</groupId>
+                <artifactId>android-maven-plugin</artifactId>
+                <extensions>true</extensions>
+                <version>${android_maven_plugin_version}</version>
+                <configuration>
+                    <sdk>
+                        <platform>${android_compile_api_level}</platform>
+                    </sdk>
+                    <sign>
+                        <debug>false</debug>
+                    </sign>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <repositories>
+        <repository>
+            <id>oss-central</id>
+            <url>https://oss.sonatype.org/content/repositories/releases/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>oss-snapshots</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+            <releases>
+                <enabled>false</enabled>
+                <updatePolicy>always</updatePolicy>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>j-center</id>
+            <url>https://jcenter.bintray.com</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+</project>
