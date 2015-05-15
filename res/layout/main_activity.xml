@@ -11,15 +11,16 @@
         android:layout_width="65dp"
         android:layout_height="65dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginRight="100dp"
+        android:layout_marginTop="10dp"
         fresco:placeholderImage="@color/image_placeholder" />
 
     <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/ani_image"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="200dp"
+        android:layout_height="300dp"
         android:layout_below="@id/logo_image"
-        android:layout_marginRight="100dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
         fresco:placeholderImage="@color/image_placeholder" />
 
 </RelativeLayout>
